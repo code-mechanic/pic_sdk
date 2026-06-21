@@ -1,4 +1,4 @@
-include config/developement_config.mk
+include config/development_config.mk
 include cmake/config_build.mk
 
 # Check if MCU_BRIDGE_HW is one of the supported values
