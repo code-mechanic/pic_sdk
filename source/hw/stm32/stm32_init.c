@@ -22,7 +22,7 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
-static status_t mcu_bridge_drivers_init(void);
+static status_t stm32_drivers_init(void);
 
 // +--------------------------------------------------------------------------+
 // |                                                                          |
@@ -54,7 +54,7 @@ status_t mcu_bridge_init(mcu_bridge_init_param_t* p_init_param)
     }
 
     if(status == STATUS_SUCCESS) {
-        status = mcu_bridge_drivers_init();
+        status = stm32_drivers_init();
     }
 
     return status;
@@ -80,7 +80,7 @@ void mcu_bridge_delay_ms(uint32_t delay_ms)
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
-static status_t mcu_bridge_drivers_init(void)
+static status_t stm32_drivers_init(void)
 {
     status_t status = STATUS_SUCCESS;
 

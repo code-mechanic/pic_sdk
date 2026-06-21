@@ -39,7 +39,7 @@ static void                 stm32_gpio_clk_enable(GPIO_TypeDef* p_port);
 static uint32_t             stm32_gpio_get_mode(mcu_gpio_pin_dir_t pin_dir, mcu_gpio_intr_trig_type_t trig_type);
 static uint32_t             stm32_gpio_get_pull(mcu_gpio_pin_pull_t pull);
 static uint32_t             stm32_gpio_get_speed(mcu_gpio_pin_speed_t speed);
-static bool                 is_stm32_gpio_configured(uint32_t gpio_idx);
+static bool                 stm32_gpio_is_configured(uint32_t gpio_idx);
 
 // +--------------------------------------------------------------------------+
 // |                                                                          |
@@ -112,7 +112,7 @@ status_t mcu_gpio_bridge_read(uint32_t gpio_idx, mcu_gpio_pin_val_t* p_val)
     GPIO_PinState      hal_pin_read_status;
     mcu_gpio_pin_val_t read_val;
 
-    if(!is_stm32_gpio_configured(gpio_idx)) {
+    if(!stm32_gpio_is_configured(gpio_idx)) {
         status = STATUS_MCU_GPIO_NOT_CONFIGURED;
     }
 
@@ -132,7 +132,7 @@ status_t mcu_gpio_bridge_write(uint32_t gpio_idx, mcu_gpio_pin_val_t val)
 {
     status_t      status            = STATUS_SUCCESS;
     GPIO_PinState hal_pin_write_val = (val == MCU_GPIO_PIN_VAL_HIGH) ? GPIO_PIN_SET : GPIO_PIN_RESET;
-    if(!is_stm32_gpio_configured(gpio_idx)) {
+    if(!stm32_gpio_is_configured(gpio_idx)) {
         status = STATUS_MCU_GPIO_NOT_CONFIGURED;
     }
 
@@ -149,7 +149,7 @@ status_t mcu_gpio_bridge_toggle(uint32_t gpio_idx)
 {
     status_t status = STATUS_SUCCESS;
 
-    if(!is_stm32_gpio_configured(gpio_idx)) {
+    if(!stm32_gpio_is_configured(gpio_idx)) {
         status = STATUS_MCU_GPIO_NOT_CONFIGURED;
     }
 
@@ -178,7 +178,7 @@ status_t mcu_gpio_bridge_get_dir(uint32_t gpio_idx, mcu_gpio_pin_dir_t* p_dir)
 {
     status_t status = STATUS_SUCCESS;
 
-    if(!is_stm32_gpio_configured(gpio_idx)) {
+    if(!stm32_gpio_is_configured(gpio_idx)) {
         status = STATUS_MCU_GPIO_NOT_CONFIGURED;
     }
 
@@ -325,7 +325,7 @@ static uint32_t stm32_gpio_get_speed(mcu_gpio_pin_speed_t speed)
     return stm32_speed;
 }
 
-static inline bool is_stm32_gpio_configured(uint32_t gpio_idx)
+static inline bool stm32_gpio_is_configured(uint32_t gpio_idx)
 {
     return MB_BIT_UINT32_ARRAY_READ_BIT(g_stm32_gpio_config_tracker, gpio_idx);
 }
