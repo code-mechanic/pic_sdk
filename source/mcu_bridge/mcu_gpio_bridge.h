@@ -1,5 +1,5 @@
-#ifndef MCU_BRIDGE_H
-#define MCU_BRIDGE_H
+#ifndef MCU_GPIO_BRIDGE_H
+#define MCU_GPIO_BRIDGE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -48,4 +48,4 @@ status_t mcu_gpio_bridge_get_dir(uint32_t gpio_idx, mcu_gpio_pin_dir_t* p_dir);
 }
 #endif
 
-#endif /* MCU_BRIDGE_H */
+#endif /* MCU_GPIO_BRIDGE_H */
