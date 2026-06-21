@@ -21,10 +21,6 @@ extern "C" {
 #include <common/status.h>
 #include <mcu_bridge_cfg.h>
 
-#ifdef STM32_HAL_HEADER
-/* STM32 MCU header. Macro will be created as a part of CMakeLists.txt */
-#include STM32_HAL_HEADER
-#endif
 
 #ifdef MCU_BRIDGE_CFG_GPIO_DRIVER_ENABLED
 #include <mcu_drivers/mcu_gpio.h>
